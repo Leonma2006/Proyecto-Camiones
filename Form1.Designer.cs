@@ -97,6 +97,7 @@ namespace Proyecto_Camiones
             dgvRegistros.AllowUserToAddRows = false;
             dgvRegistros.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvRegistros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvRegistros.BackgroundColor = Color.SteelBlue;
             dgvRegistros.ColumnHeadersHeight = 29;
             tableLayoutPanel1.SetColumnSpan(dgvRegistros, 6);
             dgvRegistros.Location = new Point(3, 63);

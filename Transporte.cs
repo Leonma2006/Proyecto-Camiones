@@ -34,9 +34,9 @@ namespace Proyecto_Camiones
                 MessageBox.Show($"Error iniciando acceso a datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            CargarRegistros();
             ConfigurarGridT();
+            CargarRegistros();
+
         }
 
         private void CargarRegistros()
@@ -57,18 +57,14 @@ namespace Proyecto_Camiones
 
         private void CargarRegistroSeleccionadoT()
         {
-            if (dgvTransportes.CurrentRow == null) return;
+            if (dgvTransportes.CurrentRow == null)
+            {
+                return;
+            }
             DataGridViewRow fila = dgvTransportes.CurrentRow;
             txtMarca.Text = fila.Cells["Marca"].Value?.ToString();
             txtTransporte.Text = fila.Cells["Transporte"].Value?.ToString();
             Id_TransporteSeleccionado = Convert.ToInt32(fila.Cells["Id"].Value);
-        }
-
-        private void dgvTransportes_SelectionChanged(object sender, EventArgs e)
-        {
-            if (!cargarDatos) return;
-            if (dgvTransportes.CurrentRow == null) return;
-            CargarRegistroSeleccionadoT();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -137,6 +133,13 @@ namespace Proyecto_Camiones
             hoja.Columns().AdjustToContents();
             libro.SaveAs(guardar.FileName);
             MessageBox.Show("Archivo exportado correctamente.");
+        }
+
+        private void dgvTransportes_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (!cargarDatos) return;
+            if (dgvTransportes.CurrentRow == null) return;
+            CargarRegistroSeleccionadoT();
         }
     }
 }

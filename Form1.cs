@@ -57,6 +57,14 @@ namespace Proyecto_Camiones
             dgvRegistros.DataSource = registroDAO.Mostrar();
             if (dgvOperador != null) dgvOperador.DataSource = operadorDAO.Mostrar();
             if (dgvTransportes != null) dgvTransportes.DataSource = transporteDAO.Mostrar();
+            dgvRegistros.DefaultCellStyle.ForeColor = Color.Black;
+            dgvRegistros.DefaultCellStyle.BackColor = Color.White;
+
+            dgvRegistros.RowsDefaultCellStyle.ForeColor = Color.Black;
+            dgvRegistros.RowsDefaultCellStyle.BackColor = Color.White;
+
+            dgvRegistros.AlternatingRowsDefaultCellStyle.ForeColor = Color.Black;
+            dgvRegistros.AlternatingRowsDefaultCellStyle.BackColor = Color.White;
         }
 
         private void ConfigurarGridR()
@@ -123,7 +131,15 @@ namespace Proyecto_Camiones
 
         private void CargarCombosO()
         {
-            // Si hay combos adicionales de operadores en el form, cargar aquí.
+            DataTable tablaTrans = transporteDAO.ObtenerTransportes();
+            DataRow filaTrans = tablaTrans.NewRow();
+            filaTrans["Id"] = 0;
+            filaTrans["Transporte"] = "Todos";
+            tablaTrans.Rows.InsertAt(filaTrans, 0);
+
+            cbTrans.DataSource = tablaTrans;
+            cbTrans.DisplayMember = "Transporte";
+            cbTrans.ValueMember = "Id";
         }
 
         private void CargarRegistroSeleccionadoR()

@@ -101,13 +101,6 @@ namespace Proyecto_Camiones
             catch (Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-        private void dgvOperador_SelectionChanged(object sender, EventArgs e)
-        {
-            if (!cargarDatos) return;
-            if (dgvOperador.CurrentRow == null) return;
-            CargarRegistroSeleccionadoO();
-        }
-
         private void CargarCombosO()
         {
             DataTable tablaTrans = transporteDAO.ObtenerTransportes();
@@ -190,6 +183,13 @@ namespace Proyecto_Camiones
             cbTrans3.SelectedIndex = -1;
             if (dgvOperador.DataSource != null) dgvOperador.ClearSelection();
             Id_OperadorSeleccionado = -1;
+        }
+
+        private void dgvOperador_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (!cargarDatos) return;
+            if (dgvOperador.CurrentRow == null) return;
+            CargarRegistroSeleccionadoO();
         }
     }
 }
