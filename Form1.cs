@@ -46,8 +46,10 @@ namespace Proyecto_Camiones
             dtHoraFinE.Enabled = false;
             dtHoraInE.Enabled = false;
             dtHoraInS.Enabled = false;
-            lolo.Enabled = false;
-            LOL.Enabled = false;
+            chkFechaE.Enabled = false;
+            chkFechaS.Enabled = false;
+            lolo.Enabled = true;
+            LOL.Enabled = true;
         }
 
         private void CargarRegistros()
@@ -363,8 +365,7 @@ namespace Proyecto_Camiones
 
         private void chkHoraS_CheckedChanged_1(object sender, EventArgs e)
         {
-            dtHoraInS.Enabled = chkHoraS.Checked;
-            dtHoraFinS.Enabled = chkHoraS.Checked;
+            
         }
 
         private void chkFechaS_CheckedChanged(object sender, EventArgs e)
@@ -374,13 +375,13 @@ namespace Proyecto_Camiones
 
         private void chkHoraE_CheckedChanged(object sender, EventArgs e)
         {
-            dtHoraInE.Enabled = chkHoraE.Checked;
-            dtHoraFinE.Enabled = chkHoraE.Checked;
+            
         }
 
         private void chkFechaE_CheckedChanged(object sender, EventArgs e)
         {
-            
+
+
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -393,24 +394,29 @@ namespace Proyecto_Camiones
 
         }
 
+
         private void chkHoraE_CheckedChanged_1(object sender, EventArgs e)
         {
-
+            dtHoraInE.Enabled = chkHoraE.Checked;
+            dtHoraFinE.Enabled = chkHoraE.Checked;
         }
 
         private void chkHoraS_CheckedChanged(object sender, EventArgs e)
         {
-
+            dtHoraInS.Enabled = chkHoraS.Checked;
+            dtHoraFinS.Enabled = chkHoraS.Checked;
         }
 
         private void lolo_CheckedChanged(object sender, EventArgs e)
         {
-            chkFechaS.Checked = lolo.Checked;
+            chkFechaS.Enabled = lolo.Checked;
         }
 
         private void LOL_CheckedChanged(object sender, EventArgs e)
         {
-            chkFechaE.Enabled = true; 
+
+            chkFechaE.Enabled = LOL.Checked;
         }
+
     }
 }
