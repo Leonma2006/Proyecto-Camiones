@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Proyecto_Camiones
 {
-    public partial class Form1 : Form
+    public partial class Registro : Form
     {
         private bool cargarDatos = true;
         private int Id_registroSeleccionado = -1;
@@ -15,7 +15,7 @@ namespace Proyecto_Camiones
         private OperadorDAO operadorDAO;
         private TransporteDAO transporteDAO;
 
-        public Form1()
+        public Registro()
         {
             InitializeComponent();
         }
@@ -44,12 +44,10 @@ namespace Proyecto_Camiones
             CargarRegistros();
             dtHoraFinS.Enabled = false;
             dtHoraFinE.Enabled = false;
-            dtHoraInE.Enabled = false;
-            dtHoraInS.Enabled = false;
-            chkFechaE.Enabled = false;
-            chkFechaS.Enabled = false;
-            lolo.Enabled = true;
-            LOL.Enabled = true;
+            dtHoraInE.Enabled = true;
+            dtHoraInS.Enabled = true;
+            chkFechaE.Enabled = true;
+            chkFechaS.Enabled = true;
         }
 
         private void CargarRegistros()
@@ -233,28 +231,55 @@ namespace Proyecto_Camiones
             cargarDatos = false;
             dgvRegistros.ClearSelection();
             LimpiarFormulario();
+            CargarRegistros();
             cargarDatos = true;
         }
 
         private void ExportarExcel(DataGridView dgv)
         {
-            SaveFileDialog guardar = new() { Filter = "Excel (*.xlsx)|*.xlsx", FileName = "Registros.xlsx" };
+            string fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+            SaveFileDialog guardar = new()
+            {
+                Filter = "Excel (*.xlsx)|*.xlsx",
+                FileName = "Registros_" + fecha + ".xlsx"
+            };
             if (guardar.ShowDialog() != DialogResult.OK) return;
 
             using var libro = new XLWorkbook();
-            var hoja = libro.Worksheets.Add("Datos");
+            var hoja = libro.Worksheets.Add("Sheet1");
 
+            // Dejar espacio: fila y columna inicial
+            int filaInicio = 3; // empieza en la fila 3
+            int colInicio = 2;  // empieza en la columna 2
+
+            // Encabezado personalizado (sin color de fondo)
+            hoja.Cell(filaInicio, colInicio).Value = "Generador el: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            hoja.Range(filaInicio, colInicio, filaInicio, colInicio + dgv.Columns.Count - 1).Merge();
+            hoja.Cell(filaInicio, colInicio).Style.Font.Bold = true;
+
+            // Encabezados de columnas (verde oscuro con texto blanco)
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
-                hoja.Cell(1, i + 1).Value = dgv.Columns[i].HeaderText;
-                hoja.Cell(1, i + 1).Style.Font.Bold = true;
+                var celda = hoja.Cell(filaInicio + 1, colInicio + i);
+                celda.Value = dgv.Columns[i].HeaderText;
+                celda.Style.Font.Bold = true;
+                celda.Style.Fill.BackgroundColor = XLColor.Green;
+                celda.Style.Font.FontColor = XLColor.White;
+                celda.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                celda.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
             }
 
+            // Datos (verde claro con bordes)
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
                 for (int j = 0; j < dgv.Columns.Count; j++)
                 {
-                    hoja.Cell(i + 2, j + 1).Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                    var celda = hoja.Cell(filaInicio + 2 + i, colInicio + j);
+                    celda.Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                    celda.Style.Fill.BackgroundColor = XLColor.LightGreen;
+                    celda.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    celda.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
                 }
             }
 
@@ -263,7 +288,14 @@ namespace Proyecto_Camiones
             MessageBox.Show("Archivo exportado correctamente.");
         }
 
-        private void btnExportar_Click(object sender, EventArgs e) => ExportarExcel(dgvRegistros);
+
+
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+
+            ExportarExcel(dgvRegistros);
+        }
 
         private void btnConexion_Click(object sender, EventArgs e)
         {
@@ -296,12 +328,10 @@ namespace Proyecto_Camiones
 
             dgvRegistros.DataSource = registroDAO.Filtrar(IdOperador,
                 idTransporte,
-                LOL.Checked,
                 chkHoraE.Checked,
                 horaInicioE,
                 horaSalidaE,
                 fecha,
-                lolo.Checked,
                 chkHoraS.Checked,
                 destino,
                 horaInicioS,
@@ -354,7 +384,10 @@ namespace Proyecto_Camiones
 
         private void btNuevo_Click(object sender, EventArgs e)
         {
-            bool ok = registroDAO.NuevoRegistro(
+            bool ok;
+            if (MessageBox.Show("¿Ingresar este registro?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ok = registroDAO.NuevoRegistro(
                 chkFechaE.Value.Date,
                 dtHoraInE.Value.TimeOfDay,
                 Convert.ToInt32(cbOp.SelectedValue),
@@ -367,6 +400,11 @@ namespace Proyecto_Camiones
                 chkFechaS.Value.Date,
                 dtHoraInS.Value.TimeOfDay
             );
+                }
+            else
+            {
+                ok = false;
+            }
 
             if (ok)
             {
@@ -381,17 +419,16 @@ namespace Proyecto_Camiones
 
         private void chkHoraS_CheckedChanged_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void chkFechaS_CheckedChanged(object sender, EventArgs e)
         {
-            lolo.Enabled = lolo.Checked;
         }
 
         private void chkHoraE_CheckedChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void chkFechaE_CheckedChanged(object sender, EventArgs e)
@@ -413,26 +450,19 @@ namespace Proyecto_Camiones
 
         private void chkHoraE_CheckedChanged_1(object sender, EventArgs e)
         {
-            dtHoraInE.Enabled = chkHoraE.Checked;
+
             dtHoraFinE.Enabled = chkHoraE.Checked;
         }
 
         private void chkHoraS_CheckedChanged(object sender, EventArgs e)
         {
-            dtHoraInS.Enabled = chkHoraS.Checked;
+
             dtHoraFinS.Enabled = chkHoraS.Checked;
         }
 
-        private void lolo_CheckedChanged(object sender, EventArgs e)
-        {
-            chkFechaS.Enabled = lolo.Checked;
-        }
-
-        private void LOL_CheckedChanged(object sender, EventArgs e)
+        private void dtHoraFinE_ValueChanged(object sender, EventArgs e)
         {
 
-            chkFechaE.Enabled = LOL.Checked;
         }
-
     }
 }

@@ -74,7 +74,7 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutPanel3.Size = new Size(800, 450);
+            tableLayoutPanel3.Size = new Size(1030, 587);
             tableLayoutPanel3.TabIndex = 50;
             // 
             // dgvOperador
@@ -88,7 +88,7 @@
             dgvOperador.Location = new Point(3, 143);
             dgvOperador.Name = "dgvOperador";
             dgvOperador.RowHeadersWidth = 51;
-            dgvOperador.Size = new Size(794, 244);
+            dgvOperador.Size = new Size(1024, 381);
             dgvOperador.TabIndex = 39;
             dgvOperador.SelectionChanged += dgvOperador_SelectionChanged_1;
             // 
@@ -102,7 +102,7 @@
             button7.ForeColor = SystemColors.ButtonHighlight;
             button7.Image = Properties.Resources.Excel;
             button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(653, 393);
+            button7.Location = new Point(883, 530);
             button7.Name = "button7";
             button7.Size = new Size(144, 54);
             button7.TabIndex = 38;
@@ -174,7 +174,7 @@
             button10.ForeColor = SystemColors.ButtonHighlight;
             button10.Image = Properties.Resources.trash;
             button10.ImageAlign = ContentAlignment.MiddleLeft;
-            button10.Location = new Point(3, 393);
+            button10.Location = new Point(3, 530);
             button10.Name = "button10";
             button10.Size = new Size(144, 54);
             button10.TabIndex = 42;
@@ -206,7 +206,7 @@
             button11.ForeColor = SystemColors.ButtonHighlight;
             button11.Image = Properties.Resources.buscar;
             button11.ImageAlign = ContentAlignment.MiddleLeft;
-            button11.Location = new Point(653, 83);
+            button11.Location = new Point(883, 83);
             button11.Name = "button11";
             button11.Size = new Size(144, 54);
             button11.TabIndex = 41;
@@ -234,7 +234,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1030, 587);
             Controls.Add(tableLayoutPanel3);
             Name = "Operadores";
             Text = "Operadores";

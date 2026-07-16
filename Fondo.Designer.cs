@@ -1,6 +1,6 @@
 ﻿namespace Proyecto_Camiones
 {
-    partial class Form2
+    partial class Fondo
     {
         /// <summary>
         /// Required designer variable.
@@ -33,20 +33,22 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             flowLayoutPanel1.BackgroundImage = Properties.Resources.gat_logo;
+            flowLayoutPanel1.BackgroundImageLayout = ImageLayout.Stretch;
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1005, 495);
+            flowLayoutPanel1.Size = new Size(1001, 508);
             flowLayoutPanel1.TabIndex = 0;
             // 
-            // Form2
+            // Fondo
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1005, 495);
+            ClientSize = new Size(1001, 508);
             Controls.Add(flowLayoutPanel1);
-            Name = "Form2";
+            Name = "Fondo";
             Text = "Form2";
             ResumeLayout(false);
         }

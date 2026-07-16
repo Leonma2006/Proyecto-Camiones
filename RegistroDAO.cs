@@ -33,7 +33,7 @@ R.HORA_S
 FROM REGISTROS_E_S R
 LEFT JOIN MAESTRO_OP O ON R.ID_PROV = O.Id
 LEFT JOIN MAESTRO_TRANS T ON R.ID_TRANS = T.Id
-ORDER BY R.ID_REGISTRO DESC";
+ORDER BY R.ID_REGISTRO";
 
             SqlDataAdapter da = new(sql, conexion.AbrirConexion());
             da.Fill(tabla);
@@ -43,12 +43,10 @@ ORDER BY R.ID_REGISTRO DESC";
 
         public DataTable Filtrar(int idOperador,
             int idTransporte,
-            bool usarFecha,
             bool usarInicioE,
             TimeSpan horainicioE,
             TimeSpan horaFinE,
             DateTime fecha,
-            bool usarFechaS,
             bool usarInicioS,
             string destino,
             TimeSpan horaInicioS,
@@ -83,28 +81,24 @@ WHERE 1 = 1";
 
             if (idOperador != 0) sql += " AND O.Id=@idOperador";
             if (idTransporte != 0) sql += " AND T.Id=@idTransporte";
-            if (usarFecha) sql += " AND R.FECHA_ENT=@fecha";
             if (usarInicioE) sql += " AND R.HORA between @horaInicioE and @horaFinE";
-            if (usarFechaS) sql += " AND R.FECHA_SAL=@fechaS";
             if (usarInicioS) sql += " AND R.HORA_S between @horaInicioS and @horaFinS";
             if (!string.IsNullOrEmpty(destino) && destino != "TODOS") sql += " AND R.DESTINO = @destino";
             if (!string.IsNullOrEmpty(folio)) sql += " AND R.FOLIO = @folio";
             if (!string.IsNullOrEmpty(placas)) sql += " AND R.PLACAS = @placas";
             if (!string.IsNullOrEmpty(sellos)) sql += " AND R.SELLOS = @sellos";
 
-            sql += " ORDER BY R.ID_REGISTRO DESC";
+            sql += " ORDER BY R.ID_REGISTRO";
 
             SqlCommand cmd = new(sql, conexion.AbrirConexion());
 
             if (idOperador != 0) cmd.Parameters.AddWithValue("@idOperador", idOperador);
             if (idTransporte != 0) cmd.Parameters.AddWithValue("@idTransporte", idTransporte);
-            if (usarFecha) cmd.Parameters.AddWithValue("@fecha", fecha);
             if (usarInicioE)
             {
                 cmd.Parameters.AddWithValue("@horaInicioE", horainicioE);
                 cmd.Parameters.AddWithValue("@horaFinE", horaFinE);
             }
-            if (usarFechaS) cmd.Parameters.AddWithValue("@fechaS", fecha);
             if (usarInicioS)
             {
                 cmd.Parameters.AddWithValue("@horaInicioS", horaInicioS);

@@ -115,21 +115,52 @@ namespace Proyecto_Camiones
 
         private void ExportarExcel(DataGridView dgv)
         {
-            SaveFileDialog guardar = new() { Filter = "Excel (*.xlsx)|*.xlsx", FileName = "Registros.xlsx" };
+            string fecha = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+            SaveFileDialog guardar = new()
+            {
+                Filter = "Excel (*.xlsx)|*.xlsx",
+                FileName = "Transporte_" + fecha + ".xlsx"
+            };
             if (guardar.ShowDialog() != DialogResult.OK) return;
 
             using var libro = new XLWorkbook();
-            var hoja = libro.Worksheets.Add("Datos");
+            var hoja = libro.Worksheets.Add("Sheet1");
+
+            // Dejar espacio: fila y columna inicial
+            int filaInicio = 3; // empieza en la fila 3
+            int colInicio = 2;  // empieza en la columna 2
+
+            // Encabezado personalizado (sin color de fondo)
+            hoja.Cell(filaInicio, colInicio).Value = "Generador el: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            hoja.Range(filaInicio, colInicio, filaInicio, colInicio + dgv.Columns.Count - 1).Merge();
+            hoja.Cell(filaInicio, colInicio).Style.Font.Bold = true;
+
+            // Encabezados de columnas (verde oscuro con texto blanco)
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
-                hoja.Cell(1, i + 1).Value = dgv.Columns[i].HeaderText;
-                hoja.Cell(1, i + 1).Style.Font.Bold = true;
+                var celda = hoja.Cell(filaInicio + 1, colInicio + i);
+                celda.Value = dgv.Columns[i].HeaderText;
+                celda.Style.Font.Bold = true;
+                celda.Style.Fill.BackgroundColor = XLColor.Green;
+                celda.Style.Font.FontColor = XLColor.White;
+                celda.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                celda.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
             }
+
+            // Datos (verde claro con bordes)
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
                 for (int j = 0; j < dgv.Columns.Count; j++)
-                    hoja.Cell(i + 2, j + 1).Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                {
+                    var celda = hoja.Cell(filaInicio + 2 + i, colInicio + j);
+                    celda.Value = dgv.Rows[i].Cells[j].Value?.ToString();
+                    celda.Style.Fill.BackgroundColor = XLColor.LightGreen;
+                    celda.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                    celda.Style.Border.InsideBorder = XLBorderStyleValues.Thin;
+                }
             }
+
             hoja.Columns().AdjustToContents();
             libro.SaveAs(guardar.FileName);
             MessageBox.Show("Archivo exportado correctamente.");

@@ -21,7 +21,7 @@ namespace SistemaEntradasSalidas.Datos
         public DataTable Mostrar()
         {
             DataTable tabla = new();
-            string sql = @"SELECT Id, nombre, id_transporte FROM MAESTRO_OP ORDER BY Id DESC";
+            string sql = @"SELECT Id, nombre, id_transporte FROM MAESTRO_OP ORDER BY Id";
             SqlDataAdapter da = new(sql, conexion.AbrirConexion());
             da.Fill(tabla);
             conexion.CerrarConexion();
@@ -34,7 +34,7 @@ namespace SistemaEntradasSalidas.Datos
             string sql = @"SELECT Id, nombre, id_transporte FROM MAESTRO_OP WHERE 1=1";
             if (!string.IsNullOrEmpty(nombre)) sql += " AND nombre = @nombre";
             if (idTransporte != 0) sql += " AND id_transporte = @idTransporte";
-            sql += " ORDER BY Id DESC";
+            sql += " ORDER BY Id";
 
             SqlCommand cmd = new(sql, conexion.AbrirConexion());
             if (!string.IsNullOrEmpty(nombre)) cmd.Parameters.AddWithValue("@nombre", nombre);

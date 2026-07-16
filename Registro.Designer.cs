@@ -6,7 +6,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Proyecto_Camiones
 {
-    partial class Form1
+    partial class Registro
     {
         private IContainer components = null;
 
@@ -46,8 +46,6 @@ namespace Proyecto_Camiones
             cbOp = new ComboBox();
             cbTrans = new ComboBox();
             cbDestino = new ComboBox();
-            LOL = new CheckBox();
-            lolo = new CheckBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -57,6 +55,10 @@ namespace Proyecto_Camiones
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
             tableLayoutPanel1.SuspendLayout();
             ((ISupportInitialize)dgvRegistros).BeginInit();
             ((ISupportInitialize)dgvOperador).BeginInit();
@@ -89,7 +91,7 @@ namespace Proyecto_Camiones
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutPanel1.Size = new Size(1020, 280);
+            tableLayoutPanel1.Size = new Size(1159, 423);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // dgvRegistros
@@ -106,7 +108,7 @@ namespace Proyecto_Camiones
             dgvRegistros.RowHeadersVisible = false;
             dgvRegistros.RowHeadersWidth = 51;
             dgvRegistros.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvRegistros.Size = new Size(1014, 154);
+            dgvRegistros.Size = new Size(1153, 297);
             dgvRegistros.TabIndex = 1;
             dgvRegistros.SelectionChanged += dgvRegistros_SelectionChanged_1;
             // 
@@ -148,7 +150,7 @@ namespace Proyecto_Camiones
             btFiltrar.Font = new Font("Stencil", 12F);
             btFiltrar.Image = Properties.Resources.buscar;
             btFiltrar.ImageAlign = ContentAlignment.MiddleLeft;
-            btFiltrar.Location = new Point(873, 3);
+            btFiltrar.Location = new Point(1012, 3);
             btFiltrar.Name = "btFiltrar";
             btFiltrar.Size = new Size(144, 54);
             btFiltrar.TabIndex = 5;
@@ -163,7 +165,7 @@ namespace Proyecto_Camiones
             btEliminar.Font = new Font("Stencil", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btEliminar.Image = Properties.Resources.trash;
             btEliminar.ImageAlign = ContentAlignment.MiddleLeft;
-            btEliminar.Location = new Point(3, 223);
+            btEliminar.Location = new Point(3, 366);
             btEliminar.Name = "btEliminar";
             btEliminar.Size = new Size(144, 54);
             btEliminar.TabIndex = 6;
@@ -178,7 +180,7 @@ namespace Proyecto_Camiones
             exF.Font = new Font("Stencil", 12F);
             exF.Image = Properties.Resources.Excel;
             exF.ImageAlign = ContentAlignment.MiddleLeft;
-            exF.Location = new Point(873, 223);
+            exF.Location = new Point(1012, 366);
             exF.Name = "exF";
             exF.Size = new Size(144, 54);
             exF.TabIndex = 7;
@@ -261,29 +263,29 @@ namespace Proyecto_Camiones
             // chkHoraS
             // 
             chkHoraS.AutoSize = true;
-            chkHoraS.Location = new Point(583, 158);
+            chkHoraS.Location = new Point(751, 196);
             chkHoraS.Name = "chkHoraS";
-            chkHoraS.Size = new Size(129, 24);
+            chkHoraS.Size = new Size(77, 24);
             chkHoraS.TabIndex = 5;
-            chkHoraS.Text = "HORA FILTRAR";
+            chkHoraS.Text = "HASTA";
             chkHoraS.UseVisualStyleBackColor = true;
             chkHoraS.CheckedChanged += chkHoraS_CheckedChanged;
             // 
             // chkHoraE
             // 
             chkHoraE.AutoSize = true;
-            chkHoraE.Location = new Point(587, 42);
+            chkHoraE.Location = new Point(751, 86);
             chkHoraE.Name = "chkHoraE";
-            chkHoraE.Size = new Size(129, 24);
+            chkHoraE.Size = new Size(77, 24);
             chkHoraE.TabIndex = 6;
-            chkHoraE.Text = "HORA FILTRAR";
+            chkHoraE.Text = "HASTA";
             chkHoraE.UseVisualStyleBackColor = true;
             chkHoraE.CheckedChanged += chkHoraE_CheckedChanged_1;
             // 
             // chkFechaE
             // 
             chkFechaE.Format = DateTimePickerFormat.Custom;
-            chkFechaE.Location = new Point(808, 12);
+            chkFechaE.Location = new Point(619, 52);
             chkFechaE.Name = "chkFechaE";
             chkFechaE.Size = new Size(126, 27);
             chkFechaE.TabIndex = 9;
@@ -291,7 +293,7 @@ namespace Proyecto_Camiones
             // chkFechaS
             // 
             chkFechaS.Format = DateTimePickerFormat.Custom;
-            chkFechaS.Location = new Point(808, 128);
+            chkFechaS.Location = new Point(619, 160);
             chkFechaS.Name = "chkFechaS";
             chkFechaS.Size = new Size(126, 27);
             chkFechaS.TabIndex = 12;
@@ -300,7 +302,7 @@ namespace Proyecto_Camiones
             // dtHoraFinS
             // 
             dtHoraFinS.Format = DateTimePickerFormat.Time;
-            dtHoraFinS.Location = new Point(808, 193);
+            dtHoraFinS.Location = new Point(834, 192);
             dtHoraFinS.Name = "dtHoraFinS";
             dtHoraFinS.Size = new Size(126, 27);
             dtHoraFinS.TabIndex = 13;
@@ -308,15 +310,16 @@ namespace Proyecto_Camiones
             // dtHoraFinE
             // 
             dtHoraFinE.Format = DateTimePickerFormat.Time;
-            dtHoraFinE.Location = new Point(808, 72);
+            dtHoraFinE.Location = new Point(834, 82);
             dtHoraFinE.Name = "dtHoraFinE";
             dtHoraFinE.Size = new Size(126, 27);
             dtHoraFinE.TabIndex = 14;
+            dtHoraFinE.ValueChanged += dtHoraFinE_ValueChanged;
             // 
             // dtHoraInS
             // 
             dtHoraInS.Format = DateTimePickerFormat.Time;
-            dtHoraInS.Location = new Point(587, 196);
+            dtHoraInS.Location = new Point(619, 193);
             dtHoraInS.Name = "dtHoraInS";
             dtHoraInS.Size = new Size(126, 27);
             dtHoraInS.TabIndex = 16;
@@ -324,7 +327,7 @@ namespace Proyecto_Camiones
             // dtHoraInE
             // 
             dtHoraInE.Format = DateTimePickerFormat.Time;
-            dtHoraInE.Location = new Point(587, 72);
+            dtHoraInE.Location = new Point(619, 86);
             dtHoraInE.Name = "dtHoraInE";
             dtHoraInE.Size = new Size(126, 27);
             dtHoraInE.TabIndex = 17;
@@ -353,28 +356,6 @@ namespace Proyecto_Camiones
             cbDestino.Name = "cbDestino";
             cbDestino.Size = new Size(192, 28);
             cbDestino.TabIndex = 21;
-            // 
-            // LOL
-            // 
-            LOL.AutoSize = true;
-            LOL.Location = new Point(587, 12);
-            LOL.Name = "LOL";
-            LOL.Size = new Size(147, 24);
-            LOL.TabIndex = 22;
-            LOL.Text = "FECHA ENTRADA";
-            LOL.UseVisualStyleBackColor = true;
-            LOL.CheckedChanged += LOL_CheckedChanged;
-            // 
-            // lolo
-            // 
-            lolo.AutoSize = true;
-            lolo.Location = new Point(583, 128);
-            lolo.Name = "lolo";
-            lolo.Size = new Size(130, 24);
-            lolo.TabIndex = 23;
-            lolo.Text = "FECHA SALIDA";
-            lolo.UseVisualStyleBackColor = true;
-            lolo.CheckedChanged += lolo_CheckedChanged;
             // 
             // label1
             // 
@@ -442,27 +423,69 @@ namespace Proyecto_Camiones
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(740, 77);
+            label8.Font = new Font("Stencil", 14F);
+            label8.Location = new Point(559, 20);
             label8.Name = "label8";
-            label8.Size = new Size(55, 20);
+            label8.Size = new Size(120, 29);
             label8.TabIndex = 31;
-            label8.Text = "HASTA";
+            label8.Text = "ENTRADA";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(740, 198);
+            label9.Font = new Font("Stencil", 14F);
+            label9.Location = new Point(559, 128);
             label9.Name = "label9";
-            label9.Size = new Size(55, 20);
+            label9.Size = new Size(95, 29);
             label9.TabIndex = 32;
-            label9.Text = "HASTA";
+            label9.Text = "SALIDA";
             // 
-            // Form1
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(559, 57);
+            label10.Name = "label10";
+            label10.Size = new Size(54, 20);
+            label10.TabIndex = 34;
+            label10.Text = "FECHA";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(559, 90);
+            label11.Name = "label11";
+            label11.Size = new Size(50, 20);
+            label11.TabIndex = 35;
+            label11.Text = "HORA";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(559, 197);
+            label12.Name = "label12";
+            label12.Size = new Size(50, 20);
+            label12.TabIndex = 36;
+            label12.Text = "HORA";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(559, 165);
+            label13.Name = "label13";
+            label13.Size = new Size(54, 20);
+            label13.TabIndex = 37;
+            label13.Text = "FECHA";
+            // 
+            // Registro
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
-            ClientSize = new Size(1038, 560);
+            ClientSize = new Size(1177, 703);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
@@ -472,8 +495,6 @@ namespace Proyecto_Camiones
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(lolo);
-            Controls.Add(LOL);
             Controls.Add(cbDestino);
             Controls.Add(cbTrans);
             Controls.Add(cbOp);
@@ -491,7 +512,7 @@ namespace Proyecto_Camiones
             Controls.Add(txtSellos);
             Controls.Add(tableLayoutPanel1);
             ForeColor = SystemColors.ButtonHighlight;
-            Name = "Form1";
+            Name = "Registro";
             Text = "Registro Entradas/Salidas";
             Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
@@ -532,8 +553,6 @@ namespace Proyecto_Camiones
         private ComboBox cbOp;
         private ComboBox cbTrans;
         private ComboBox cbDestino;
-        private CheckBox LOL;
-        private CheckBox lolo;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -543,5 +562,9 @@ namespace Proyecto_Camiones
         private Label label7;
         private Label label8;
         private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private Label label13;
     }
 }

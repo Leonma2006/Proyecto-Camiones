@@ -33,7 +33,7 @@ Id,
 Transporte,
 Marca
 from   MAESTRO_TRANS
-ORDER BY Id DESC";
+ORDER BY Id";
 
             SqlDataAdapter da = new(sql, conexion.AbrirConexion());
 
@@ -64,7 +64,7 @@ WHERE 1 = 1";
             {
                 sql += " AND Marca = @Marca";
             }
-            sql += " ORDER BY Id DESC";
+            sql += " ORDER BY Id";
 
             SqlCommand cmd = new(sql, conexion.AbrirConexion());
 

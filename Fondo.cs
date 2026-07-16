@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Proyecto_Camiones
 {
-    public partial class Form2 : Form
+    public partial class Fondo : Form
     {
-        public Form2()
+        public Fondo()
         {
             InitializeComponent();
         }

@@ -74,7 +74,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutPanel2.Size = new Size(800, 450);
+            tableLayoutPanel2.Size = new Size(1015, 561);
             tableLayoutPanel2.TabIndex = 39;
             // 
             // label8
@@ -127,7 +127,7 @@
             button1.ForeColor = SystemColors.ButtonHighlight;
             button1.Image = Properties.Resources.Excel;
             button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(653, 393);
+            button1.Location = new Point(868, 504);
             button1.Name = "button1";
             button1.Size = new Size(144, 54);
             button1.TabIndex = 24;
@@ -146,7 +146,7 @@
             dgvTransportes.Location = new Point(3, 143);
             dgvTransportes.Name = "dgvTransportes";
             dgvTransportes.RowHeadersWidth = 51;
-            dgvTransportes.Size = new Size(794, 244);
+            dgvTransportes.Size = new Size(1009, 355);
             dgvTransportes.TabIndex = 25;
             dgvTransportes.SelectionChanged += dgvTransportes_SelectionChanged_1;
             // 
@@ -206,7 +206,7 @@
             button5.ForeColor = SystemColors.ButtonHighlight;
             button5.Image = Properties.Resources.buscar;
             button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(653, 83);
+            button5.Location = new Point(868, 83);
             button5.Name = "button5";
             button5.Size = new Size(144, 54);
             button5.TabIndex = 27;
@@ -222,7 +222,7 @@
             button4.ForeColor = SystemColors.ButtonHighlight;
             button4.Image = Properties.Resources.trash;
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(3, 393);
+            button4.Location = new Point(3, 504);
             button4.Name = "button4";
             button4.Size = new Size(144, 54);
             button4.TabIndex = 28;
@@ -234,7 +234,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1015, 561);
             Controls.Add(tableLayoutPanel2);
             Name = "Transporte";
             Text = "Transporte";

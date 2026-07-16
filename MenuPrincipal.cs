@@ -31,27 +31,30 @@ namespace Proyecto_Camiones
         public MenuPrincipal()
         {
             InitializeComponent();
-            AbrirFormulario(new Form2());
+            AbrirFormulario(new Fondo());
         }
 
         private void tRANSPORTEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new Form1());
+            Registro frm = new Registro();
+            frm.Show();
         }
 
         private void tRANSPORTEToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new Transporte());
+            Transporte frm = new Transporte();
+            frm.Show();
         }
 
         private void oPERADORToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new Operadores());
+            Operadores frm = new Operadores();
+            frm.Show();
         }
 
         private void mAESTROToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new Form2());
+            AbrirFormulario(new Fondo());
         }
     }
 }
