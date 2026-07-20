@@ -76,8 +76,8 @@
             // mAESTROToolStripMenuItem1
             // 
             mAESTROToolStripMenuItem1.Name = "mAESTROToolStripMenuItem1";
-            mAESTROToolStripMenuItem1.Size = new Size(92, 24);
-            mAESTROToolStripMenuItem1.Text = "PRINCIPAL";
+            mAESTROToolStripMenuItem1.Size = new Size(97, 24);
+            mAESTROToolStripMenuItem1.Text = "CONEXION";
             mAESTROToolStripMenuItem1.Click += mAESTROToolStripMenuItem1_Click;
             // 
             // mAESTROSToolStripMenuItem

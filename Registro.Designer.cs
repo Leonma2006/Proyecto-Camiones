@@ -235,6 +235,7 @@ namespace Proyecto_Camiones
             // txtSellos
             // 
             txtSellos.Location = new Point(110, 130);
+            txtSellos.MaxLength = 7;
             txtSellos.Name = "txtSellos";
             txtSellos.Size = new Size(434, 27);
             txtSellos.TabIndex = 1;
@@ -252,13 +253,19 @@ namespace Proyecto_Camiones
             txtFolio.Name = "txtFolio";
             txtFolio.Size = new Size(434, 27);
             txtFolio.TabIndex = 3;
+            txtFolio.KeyPress += txtFolio_KeyPress;
             // 
             // txtPlacas
             // 
+            txtPlacas.CharacterCasing = CharacterCasing.Upper;
             txtPlacas.Location = new Point(110, 97);
             txtPlacas.Name = "txtPlacas";
             txtPlacas.Size = new Size(434, 27);
             txtPlacas.TabIndex = 4;
+            txtPlacas.TextChanged += txtPlacas_TextChanged;
+            txtPlacas.KeyDown += txtPlacas_KeyDown;
+            txtPlacas.KeyPress += txtPlacas_KeyPress;
+            txtPlacas.Validated += txtPlacas_Validated;
             // 
             // chkHoraS
             // 

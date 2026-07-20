@@ -50,6 +50,45 @@ namespace Proyecto_Camiones
             chkFechaS.Enabled = true;
         }
 
+        bool validar()
+        {
+            if (cbOp.SelectedIndex == 0 || cbOp.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escoger un nombre.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (cbTrans.SelectedIndex == 0 || cbTrans.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escoger un transporte.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtPlacas.Text))
+            {
+                MessageBox.Show("Las placas son obligatorias.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtSellos.Text))
+            {
+                MessageBox.Show("El campo Sellos es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtFolio.Text))
+            {
+                MessageBox.Show("El campo Folio es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtBultos.Text))
+            {
+                MessageBox.Show("El campo Bultos es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (cbDestino.SelectedIndex == 0 || cbDestino.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escoger un destino.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
         private void CargarRegistros()
         {
             dgvRegistros.DataSource = registroDAO.Mostrar();
@@ -337,6 +376,7 @@ namespace Proyecto_Camiones
                 horaInicioS,
                 horaFinS,
                 folio, placas, sellos);
+
         }
 
         private void txtBultos_KeyPress_1(object sender, KeyPressEventArgs e)
@@ -346,29 +386,32 @@ namespace Proyecto_Camiones
 
         private void btGuardar_Click(object sender, EventArgs e)
         {
-            bool ok = registroDAO.ActualizarRegistro(
-               Id_registroSeleccionado,
-               chkFechaE.Value.Date,
-               dtHoraInE.Value.TimeOfDay,
-               Convert.ToInt32(cbOp.SelectedValue),
-               txtPlacas.Text,
-               Convert.ToInt32(cbTrans.SelectedValue),
-               txtSellos.Text,
-               txtBultos.Text,
-               cbDestino.Text,
-               txtFolio.Text,
-               chkFechaS.Value.Date,
-               dtHoraInS.Value.TimeOfDay
-           );
+            if (validar())
+            {
+                bool ok = registroDAO.ActualizarRegistro(
+                   Id_registroSeleccionado,
+                   chkFechaE.Value.Date,
+                   dtHoraInE.Value.TimeOfDay,
+                   Convert.ToInt32(cbOp.SelectedValue),
+                   txtPlacas.Text,
+                   Convert.ToInt32(cbTrans.SelectedValue),
+                   txtSellos.Text,
+                   txtBultos.Text,
+                   cbDestino.Text,
+                   txtFolio.Text,
+                   chkFechaS.Value.Date,
+                   dtHoraInS.Value.TimeOfDay
+               );
 
-            if (ok)
-            {
-                MessageBox.Show("Registro actualizado correctamente.");
-                dgvRegistros.DataSource = registroDAO.Mostrar();
-            }
-            else
-            {
-                MessageBox.Show("No fue posible actualizar el registro.");
+                if (ok)
+                {
+                    MessageBox.Show("Registro actualizado correctamente.");
+                    dgvRegistros.DataSource = registroDAO.Mostrar();
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible actualizar el registro.");
+                }
             }
         }
 
@@ -384,36 +427,39 @@ namespace Proyecto_Camiones
 
         private void btNuevo_Click(object sender, EventArgs e)
         {
-            bool ok;
-            if (MessageBox.Show("¿Ingresar este registro?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (validar())
             {
-                ok = registroDAO.NuevoRegistro(
-                chkFechaE.Value.Date,
-                dtHoraInE.Value.TimeOfDay,
-                Convert.ToInt32(cbOp.SelectedValue),
-                txtPlacas.Text,
-                Convert.ToInt32(cbTrans.SelectedValue),
-                txtSellos.Text,
-                txtBultos.Text,
-                cbDestino.Text,
-                txtFolio.Text,
-                chkFechaS.Value.Date,
-                dtHoraInS.Value.TimeOfDay
-            );
+                bool ok;
+                if (MessageBox.Show("¿Ingresar este registro?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ok = registroDAO.NuevoRegistro(
+                    chkFechaE.Value.Date,
+                    dtHoraInE.Value.TimeOfDay,
+                    Convert.ToInt32(cbOp.SelectedValue),
+                    txtPlacas.Text,
+                    Convert.ToInt32(cbTrans.SelectedValue),
+                    txtSellos.Text,
+                    txtBultos.Text,
+                    cbDestino.Text,
+                    txtFolio.Text,
+                    chkFechaS.Value.Date,
+                    dtHoraInS.Value.TimeOfDay
+                );
                 }
-            else
-            {
-                ok = false;
-            }
+                else
+                {
+                    ok = false;
+                }
 
-            if (ok)
-            {
-                MessageBox.Show("Registro ingresado correctamente.");
-                dgvRegistros.DataSource = registroDAO.Mostrar();
-            }
-            else
-            {
-                MessageBox.Show("No fue posible ingresar el registro.");
+                if (ok)
+                {
+                    MessageBox.Show("Registro ingresado correctamente.");
+                    dgvRegistros.DataSource = registroDAO.Mostrar();
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible ingresar el registro.");
+                }
             }
         }
 
@@ -463,6 +509,39 @@ namespace Proyecto_Camiones
         private void dtHoraFinE_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPlacas_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPlacas_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void txtPlacas_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPlacas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) &&
+        !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFolio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) &&
+        !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

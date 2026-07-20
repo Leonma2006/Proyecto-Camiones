@@ -168,6 +168,7 @@ WHERE ID_REGISTRO = @ID_REGISTRO";
             cmd.Parameters.AddWithValue("@DESTINO", destino ?? string.Empty);
             cmd.Parameters.AddWithValue("@FOLIO", folio ?? string.Empty);
 
+
             if (fechaSalida.HasValue)
                 cmd.Parameters.AddWithValue("@FECHA_SAL", fechaSalida.Value);
             else

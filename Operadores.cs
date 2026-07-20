@@ -16,6 +16,18 @@ namespace Proyecto_Camiones
         private OperadorDAO operadorDAO;
         private TransporteDAO transporteDAO;
 
+        bool validar()
+        {
+            if(cbTrans3.SelectedIndex == -1 || cbTrans3.SelectedIndex==0)
+            {
+                return false;
+            }
+            if(string.IsNullOrWhiteSpace(txtNombre.Text))
+            {
+                return false;
+            }
+            return true;
+        }
         public Operadores()
         {
             InitializeComponent();
@@ -147,16 +159,19 @@ namespace Proyecto_Camiones
 
         private void button8_Click(object sender, EventArgs e)
         {
-            bool ok = operadorDAO.NuevoRegistro(txtNombre.Text, Convert.ToInt32(cbTrans3.SelectedValue));
-            if (ok)
+            if (validar())
             {
-                MessageBox.Show("Registro ingresado correctamente.");
-                CargarRegistros();
-                CargarCombosO();
-            }
-            else
-            {
-                MessageBox.Show("No fue posible ingresar el registro.");
+                bool ok = operadorDAO.NuevoRegistro(txtNombre.Text, Convert.ToInt32(cbTrans3.SelectedValue));
+                if (ok)
+                {
+                    MessageBox.Show("Registro ingresado correctamente.");
+                    CargarRegistros();
+                    CargarCombosO();
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible ingresar el registro.");
+                }
             }
         }
 
@@ -184,14 +199,17 @@ namespace Proyecto_Camiones
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            bool ok = operadorDAO.ActualizarRegistro(Id_OperadorSeleccionado, txtNombre.Text, Convert.ToInt32(cbTrans3.SelectedValue));
-            if (ok)
+            if (validar())
             {
-                MessageBox.Show("Registro actualizado correctamente.");
-                CargarRegistros();
-                CargarCombosO();
+                bool ok = operadorDAO.ActualizarRegistro(Id_OperadorSeleccionado, txtNombre.Text, Convert.ToInt32(cbTrans3.SelectedValue));
+                if (ok)
+                {
+                    MessageBox.Show("Registro actualizado correctamente.");
+                    CargarRegistros();
+                    CargarCombosO();
+                }
+                else MessageBox.Show("No fue posible actualizar el registro.");
             }
-            else MessageBox.Show("No fue posible actualizar el registro.");
         }
 
         private void button10_Click(object sender, EventArgs e)

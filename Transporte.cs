@@ -21,6 +21,21 @@ namespace Proyecto_Camiones
             InitializeComponent();
         }
 
+        bool validar()
+        {
+            if (string.IsNullOrWhiteSpace(txtTransporte.Text))
+            {
+                MessageBox.Show("El campo Transporte no puede estar vacío.");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(txtMarca.Text))
+            {
+                MessageBox.Show("El campo Marca no puede estar vacío.");
+                return false;
+            }
+            return true;    
+        }
+
         private void Transporte_Load(object sender, EventArgs e)
         {
             try
@@ -75,16 +90,18 @@ namespace Proyecto_Camiones
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            // Ajuste de orden: TransporteDAO.ActualizarRegistro(int IdTransporte, string Transporte, string Marca)
-            bool ok = transporteDAO.ActualizarRegistro(Id_TransporteSeleccionado, txtTransporte.Text, txtMarca.Text);
-            if (ok)
+            if (validar())
             {
-                MessageBox.Show("Registro actualizado correctamente.");
-                CargarRegistros();
-            }
-            else
-            {
-                MessageBox.Show("No fue posible actualizar el registro.");
+                bool ok = transporteDAO.ActualizarRegistro(Id_TransporteSeleccionado, txtTransporte.Text, txtMarca.Text);
+                if (ok)
+                {
+                    MessageBox.Show("Registro actualizado correctamente.");
+                    CargarRegistros();
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible actualizar el registro.");
+                }
             }
         }
 
@@ -95,9 +112,11 @@ namespace Proyecto_Camiones
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Ajuste de orden: NuevoRegistro(transporte, marca)
-            transporteDAO.NuevoRegistro(txtTransporte.Text, txtMarca.Text);
-            CargarRegistros();
+            if (validar())
+            {
+                transporteDAO.NuevoRegistro(txtTransporte.Text, txtMarca.Text);
+                CargarRegistros();
+            }
         }
 
         private void button4_Click_1(object sender, EventArgs e)
